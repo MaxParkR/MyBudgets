@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Google Fonts (Inter) y Remix Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de estilos CSS -->
+    <link rel="stylesheet" href="auth_style.css">
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container" id="container">
+        
+        <!-- Formulario de Registro (Sign Up) -->
+        <div class="form-container sign-up">
+           <form>
+                <h1>Crear Cuenta</h1>
+                <!-- Iconos para login con redes sociales -->
+                <div class="iconos-redes">
+                    <a href="#" class="icono"><i class="ri-google-fill"></i></a>
+                    <a href="#" class="icono"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="icono"><i class="ri-github-fill"></i></a>
+                    <a href="#" class="icono"><i class="ri-linkedin-fill"></i></a>
+                </div>
+                <span>o registrate con una red social</span>
+                <!-- Campos de entrada -->
+                <input type="text" placeholder="Nombre">
+                <input type="email" placeholder="Correo">
+                <input type="password" placeholder="Contraseña">
+                <button>registrarme</button>
+           </form> 
+        </div>
+        
+        <!-- Formulario de Inicio de Sesión (Sign In) -->
+        <div class="form-container sign-in">
+            <form>
+                 <h1>Iniciar Sesión</h1>
+                 <!-- Iconos para login con redes sociales -->
+                 <div class="iconos-redes">
+                     <a href="#" class="icono"><i class="ri-google-fill"></i></a>
+                     <a href="#" class="icono"><i class="ri-facebook-fill"></i></a>
+                     <a href="#" class="icono"><i class="ri-github-fill"></i></a>
+                     <a href="#" class="icono"><i class="ri-linkedin-fill"></i></a>
+                 </div>
+                 <!-- Campos de entrada -->
+                 <input type="email" placeholder="Correo">
+                 <input type="password" placeholder="Contraseña">
+                 <!-- Enlace para recuperar contraseña -->
+                 <a href="#">¿Olvidaste tu contraseña?</a>
+                 <button>Iniciar Sesión</button>
+            </form> 
+         </div>
+         
+         <!-- Contenedor de superposición para la animación de cambio -->
+         <div class="toggle-container">
+            <div class="toggle">
+                <!-- Panel izquierdo (muestra mensaje para ir a Registro) -->
+                <div class="toggle-panel toggle-izquierdo">
+                    <h1>Bienvenido de nuevo!</h1>
+                    <p>Accede a tu cuenta para continuar gestionando tus finanzas de manera fácil, segura y eficiente.</p>
+                    <!-- Botón que activa la vista de Registro -->
+                    <button class="hidden" id="login">Iniciar Sesion</button>
+                </div>
+                <!-- Panel derecho (muestra mensaje para ir a Login) -->
+                <div class="toggle-panel toggle-derecho">
+                    <h1>Crea tu cuenta y toma el control de tus finanzas</h1>
+                    <p>En solo unos pasos podrás acceder a un panel completo donde organizar, visualizar y analizar tus ingresos y gastos.</p>
+                    <!-- Botón que activa la vista de Login -->
+                    <button class="hidden" id="registro">Registrarme</button>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <!-- Script para la animación del toggle -->
+    <script src="auth_script.js"></script>
+</body>
+</html>

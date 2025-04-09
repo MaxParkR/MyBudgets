@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura el viewport para un diseño responsive, ajustando el ancho al del dispositivo y la escala inicial a 1 -->
+    <title>MyBudgets</title> 
+    <!-- Google Fonts: Enlaces para cargar las fuentes 'Inter' y 'Poppins' desde Google Fonts -->
+    <!-- Se usa 'preconnect' para acelerar la conexión con los servidores de fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
+
+    <!-- Remix Icon: Enlace CDN para la biblioteca de iconos Remixicon -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+
+    <!-- Swiper CSS: Enlace CDN para los estilos de la biblioteca Swiper (slider/carousel) -->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Swiper JS: Enlace CDN para el script de Swiper -->
+    <!-- 'defer' asegura que el script se descargue en paralelo y se ejecute después de que el HTML se haya analizado completamente, sin bloquear el renderizado. -->
+    <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- ScrollReveal JS: Enlace CDN para la biblioteca ScrollReveal (animaciones al hacer scroll) -->
+    <!-- 'defer' se usa por la misma razón que con Swiper JS. -->
+    <script
+    defer
+    src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <!-- Hoja de Estilos CSS Propia: Enlace al archivo CSS local -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Script Propio JS: Enlace al archivo JavaScript local -->
+    <!-- 'defer' asegura que el script se ejecute después del análisis del HTML y tenga acceso al DOM completo. -->
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <!-- Cabecera principal de la página -->
+    <header class="header" id="header">
+      <!-- Contenedor para alinear el contenido del header -->
+      <div class="header__container container"> <!-- Se usa la clase 'container' para centrar y limitar el ancho -->
+        <!-- Logo de la aplicación, envuelto en un enlace a la página de inicio -->
+        <a href="#">
+          <img src="assets/logobg.png" alt="Logo MyBudgets" class="logo"/> <!-- Texto alternativo descriptivo para el logo -->
+        </a>
+
+        <!-- Botón de activación del menú en móviles (hamburguesa) -->
+        <div class="nav-trigger" id="navTrigger">
+          <i class="ri-menu-line" aria-hidden="true"></i> <!-- Icono de menú. aria-hidden porque el botón ya tiene función -->
+        </div>
+
+        <!-- Navegación principal -->
+        <nav class="nav" id="nav">
+          <!-- Botón para cerrar el menú en móviles -->
+          <div class="nav__close-btn" id="navCloseBtn">
+            <i class="ri-close-large-line" aria-hidden="true"></i> <!-- Icono de cierre -->
+          </div>
+          <!-- Lista de enlaces de navegación -->
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#inicio" class="nav__link">Inicio</a> <!-- Enlace interno a la sección 'inicio' -->
+            </li>
+            <li class="nav__item">
+              <a href="#beneficios" class="nav__link">Beneficios</a> <!-- Enlace interno a la sección 'beneficios' -->
+            </li>
+            <li class="nav__item">
+              <a href="#reseñas" class="nav__link">Reseñas</a> <!-- Enlace interno a la sección 'reseñas' -->
+            </li>
+            <li class="nav__item">
+              <a href="#servicios" class="nav__link">Servicios</a> <!-- Enlace interno a la sección 'servicios' -->
+            </li>
+            <li class="nav__item">
+              <a href="#contacto" class="nav__link">Contacto</a> <!-- Enlace interno a la sección 'contacto' -->
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botón de acción principal (visible en escritorio) -->
+        <button class="btn btn-primary btn--lg banner__btn">Empezar</button>
+      </div>
+    </header>
+    <!-- Fin del header -->
+
+    <main> 
+      <section class="banner" id="inicio"> <!-- ID para el enlace de navegación 'Inicio' -->
+        <!-- Contenedor del banner -->
+        <div class="container banner__container">
+          <!-- Contenido de texto del banner -->
+          <div class="banner__text">
+            <p class="banner__pretitle">Gestor de finanzas personales</p>
+            <h1 class="banner__title h1">Toma el Control de tus
+              <span>Finanzas</span>
+            </h1>
+            <p class ="lead banner__subtitle">
+              Gestiona tus ingresos, egresos y toma decisiones financieras
+              inteligentes con nuestra plataforma fácil de usar.
+            </p>
+            <button class="btn btn-primary btn--lg banner__btn">
+              Empezar
+            </button>
+          </div>
+          <!-- Imagen principal del banner -->
+          <div class="banner__image">
+            <!-- Texto alternativo descriptivo para la imagen -->
+            <img src="assets/banner/bg1.png" alt="Ilustración de gestión financiera en la plataforma MyBudgets"/>
+          </div>
+        </div>
+      </section>
+      <!-- Fin del banner -->
+
+      <!-- ==================== BENEFICIOS ==================== -->
+      <!-- Sección que describe los beneficios de usar la aplicación -->
+      <section class="beneficios section" id="beneficios"> <!-- ID para el enlace de navegación 'Beneficios' -->
+        <!-- Contenedor de la sección de beneficios -->
+        <div class="container beneficios__container">
+          <h2 class="h2 beneficios__title">¿Por qué elegirnos?</h2>
+          <!-- Beneficio 1 -->
+          <div class="beneficio beneficio--1">
+            <!-- Texto del beneficio 1 -->
+            <div class="beneficio__text">
+              <h3 class="h3 beneficio__title">Gestión Financiera Simplificada</h3>
+              <p class="lead beneficio__subtitle">
+                Automatiza el registro de ingresos y gastos, asegurando un control preciso y organizado de tus finanzas.
+              </p>
+            </div>
+            <!-- Imagen del beneficio 1 -->
+            <div class="beneficio__img">
+              <!-- Texto alternativo descriptivo -->
+              <img src="assets/beneficios/Data extraction-amico.png" alt="Ilustración de gestión financiera simplificada"/>
+            </div>
+          </div>
+          <!-- Fin beneficio 1 -->
+
+          <!-- Beneficio 2 -->
+          <div class="beneficio beneficio--2">
+            <!-- Imagen del beneficio 2 -->
+            <div class="beneficio__img">
+              <!-- Texto alternativo descriptivo -->
+              <img src="assets/beneficios/Secure Server-amico.png" alt="Ilustración de seguridad y privacidad garantizadas"/>
+            </div>
+            <!-- Texto del beneficio 2 -->
+            <div class="beneficio__text">
+              <h3 class="h3 beneficio__title">Seguridad y Privacidad Garantizadas</h3>
+              <p class="lead beneficio__subtitle">
+                Tu información está protegida con protocolos de seguridad avanzados, asegurando la confidencialidad de tus datos.
+              </p>
+            </div>
+          </div>
+          <!-- Fin beneficio 2 -->
+
+          <!-- Beneficio 3 -->
+          <div class="beneficio beneficio--3">
+            <!-- Texto del beneficio 3 -->
+            <div class="beneficio__text">
+              <h3 class="h3 beneficio__title">Accesibilidad desde Cualquier Dispositivo</h3>
+              <p class="lead beneficio__subtitle">
+                Gestiona tus finanzas en cualquier momento y desde cualquier lugar con una interfaz adaptable y fácil de usar.
+              </p>
+            </div>
+            <!-- Imagen del beneficio 3 -->
+            <div class="beneficio__img">
+              <!-- Texto alternativo descriptivo -->
+              <img src="assets/beneficios/Web devices-amico.png  " alt="Ilustración de accesibilidad multidispositivo"/>
+            </div>
+          </div>
+          <!-- Fin beneficio 3 -->
+        </div>
+      </section>
+      <!-- Fin de beneficios -->
+
+      <!-- ==================== RESEÑAS / TESTIMONIOS ==================== -->
+      <!-- Sección de testimonios de usuarios -->
+      <section class="resenias" id="reseñas"> <!-- ID para el enlace de navegación 'Reseñas' -->
+        <!-- Contenedor de la sección de reseñas -->
+        <div class="container resenias__container">
+          <!-- Contenedor principal de Swiper -->
+          <div class="swiper">
+            <!-- Contenedor de los slides (elementos del carrusel) -->
+            <div class="swiper-wrapper">
+              <!-- Slide 1 -->
+              <div class="swiper-slide">
+                <!-- Contenido de una reseña individual -->
+                <div class="resenia">
+                  <p class="resenia__message">
+                    Esta web cambió por completo cómo gestiono mis finanzas. Todo está centralizado y los gráficos facilitan el análisis de mis ingresos y gastos. ¡Súper recomendada!
+                  </p>
+                  <!-- Información del autor de la reseña -->
+                  <div class="resenia__info-wrapper">
+                    <!-- Avatar del usuario -->
+                    <img class = "resenia__avatar"
+                    src="assets/reseñas/perfil1.png"
+                    alt="Avatar de María G."/> <!-- Texto alternativo específico -->
+                    <div>
+                      <h4 class="resenia__name">María G</h4>
+                      <p class="resenia__company">Herramienta imprescindible</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="swiper-slide">
+                <div class="resenia">
+                  <p class="resenia__message">
+                    No soy experto en finanzas, pero esta plataforma hace todo sencillo. Registrar mis movimientos es fácil, y los reportes detallados son de gran ayuda. Diseño limpio y funcional.
+                  </p>
+                  <div class="resenia__info-wrapper">
+                    <img class = "resenia__avatar"
+                    src="assets/reseñas/perfil2.png"
+                    alt="Avatar de Carlos R."/> <!-- Texto alternativo específico -->
+                    <div>
+                      <h4 class="resenia__name">Carlos R.</h4>
+                      <p class="resenia__company">Fácil de usar y muy completa</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="swiper-slide">
+                <div class="resenia">
+                  <p class="resenia__message">
+                    Siempre gastaba de más sin darme cuenta. Ahora veo en qué uso mi dinero, organizo mi presupuesto y logro ahorrar sin sentirme limitado. ¡Excelente herramienta!
+                  </p>
+                  <div class="resenia__info-wrapper">
+                    <img class = "resenia__avatar"
+                    src="assets/reseñas/perfil3.png"
+                    alt="Avatar de Laura M."/> <!-- Texto alternativo específico -->
+                    <div>
+                      <h4 class="resenia__name">Laura M.</h4>
+                      <p class="resenia__company">Me ha ayudado a ahorrar</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 4 -->
+              <div class="swiper-slide">
+                <div class="resenia">
+                  <p class="resenia__message">
+                    Como emprendedor, necesitaba una solución sencilla para gestionar ingresos y gastos. Esta plataforma es perfecta, con reportes visuales que facilitan mis decisiones financieras.
+                  </p>
+                  <div class="resenia__info-wrapper">
+                    <img class = "resenia__avatar"
+                    src="assets/reseñas/perfil4.png"
+                    alt="Avatar de Fernando P."/> <!-- Texto alternativo específico -->
+                    <div>
+                      <h4 class="resenia__name">Fernando P.</h4>
+                      <p class="resenia__company">Ideal para pequeños negocios</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Paginación de Swiper (los puntos indicadores) -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- Fin de reseñas -->
+
+      <!-- ==================== SERVICIOS ==================== -->
+      <!-- Sección que detalla los servicios ofrecidos -->
+      <section class="servicios section" id="servicios"> <!-- ID para el enlace de navegación 'Servicios' -->
+        <h2 class="h2 servicios__title">Servicios</h2>
+        <!-- Contenedor de los servicios (usando grid layout) -->
+        <div class="container servicios__container">
+          <!-- Servicio 1 -->
+          <div class="servicios__item">
+            <i class="ri-brain-line servicios__item-icon" aria-hidden="true"></i> <!-- Icono representativo -->
+            <h4 class="h4 servicios__item-title">Dashboard Financiero Inteligente</h4>
+            <p>
+              Visualiza todos tus movimientos en un solo lugar con gráficos interactivos. Analiza ingresos, egresos y tendencias en segundos.
+            </p>
+          </div>
+          <!-- Servicio 2 -->
+          <div class="servicios__item">
+            <i class="ri-wallet-3-line servicios__item-icon" aria-hidden="true"></i>
+            <h4 class="h4 servicios__item-title">Gestión de Ingresos y Gastos</h4>
+            <p>
+              Registra cada transacción de forma sencilla y mantén un control detallado de tus finanzas para tomar decisiones informadas.
+            </p>
+          </div>
+          <!-- Servicio 3 -->
+          <div class="servicios__item">
+            <i class="ri-file-chart-line servicios__item-icon" aria-hidden="true"></i>
+            <h4 class="h4 servicios__item-title">Reportes y Análisis Personalizados</h4>
+            <p>
+              Accede a informes automatizados que te permiten conocer el estado real de tus finanzas y proyectar escenarios futuros.
+            </p>
+          </div>
+          <!-- Servicio 4 -->
+          <div class="servicios__item">
+            <i class="ri-lock-2-line servicios__item-icon" aria-hidden="true"></i>
+            <h4 class="h4 servicios__item-title">Seguridad y Acceso Multiplataforma</h4>
+            <p>
+              Tus datos están protegidos con tecnología avanzada, y puedes acceder a tu información desde cualquier dispositivo, en cualquier momento.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Fin de servicios -->
+
+      <!-- ==================== CONTACTO ==================== -->
+      <!-- Sección del formulario de contacto -->
+      <section class="contacto section" id="contacto"> <!-- ID para el enlace de navegación 'Contacto' -->
+        <!-- Contenedor de la sección de contacto -->
+        <div class="container contacto__container">
+          <!-- Imagen decorativa de la sección de contacto -->
+          <div class="contacto__img">
+            <!-- Texto alternativo descriptivo -->
+            <img src="assets/contacto/img.svg" alt="Ilustración de contacto y soporte"/>
+          </div>
+          <!-- Contenedor del formulario y texto introductorio -->
+          <div class="contacto__form-wrapper">
+            <h3 class="contacto__form-title h3">Contáctanos</h3>
+            <p class="contacto__form-subtitle">
+              ¿Tienes dudas o necesitas más información? Estamos aquí para ayudarte. Escríbenos y te responderemos lo antes posible.
+            </p>
+            <!-- Formulario de contacto -->
+            <form class="form">
+              <!-- Campo para el nombre completo -->
+              <input class="input form__input"
+              type="text"
+              name="nombre"
+              placeholder="Nombre Completo"
+              required 
+              />
+              <!-- Campo para el correo electrónico -->
+              <input class="input form__input"
+              type="email"
+              name="email"
+              placeholder="Correo Electrónico"
+              required
+              />
+              <!-- Campo para el asunto -->
+              <input class="input form__input"
+              type="text"
+              name="asunto"
+              placeholder="Asunto"
+              required
+              />
+              <!-- Campo para el mensaje -->
+              <textarea class="textarea form__textarea"
+              name="mensaje"
+              placeholder="Mensaje"
+              required
+              ></textarea>
+              <!-- Botón de envío del formulario -->
+              <button type="submit" class="btn btn-primary btn--lg form__btn"> <!-- Tipo 'submit' -->
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Fin de Contacto -->
+
+    </main>
+    <!-- Fin del contenido principal -->
+
+    <!-- ==================== FOOTER ==================== -->
+    <!-- Pie de página -->
+    <footer class="footer"> <!-- Cambiado de <section> a <footer> para mejor semántica -->
+      <!-- Contenedor principal del footer -->
+      <div class="container footer__container">
+        <!-- Título o llamada a la acción en el footer -->
+        <img src="assets/logobg.png" alt="Logo MyBudgets" class="logo_footer"/>
+        <!-- Contenedor para la información de contacto y redes sociales -->
+        <div class="footer__info-wrapper">
+          <!-- Información de contacto -->
+          <div class="info">
+            <p class="info__email">soporte@mybudgets.com</p>
+            <p class="info__address">Calle 57 #3-00<br>
+            018000180779
+          </p>
+          </div>
+          <!-- Fin información -->
+          <!-- Lista de redes sociales -->
+          <ul class="social">
+            <li class="social__item">
+              <!-- Enlaces reales deberían ir en href -->
+              <a href="#" class="social__icon" aria-label="Instagram"> <!-- aria-label para accesibilidad -->
+                <i class="ri-instagram-fill" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__icon" aria-label="Twitter/X">
+                <i class="ri-twitter-x-line" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__icon" aria-label="Facebook">
+                <i class="ri-facebook-circle-fill" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+          <!-- Fin redes -->
+        </div>
+      </div>
+      <!-- Contenedor para el aviso de copyright -->
+      <div class="container">
+        <p class="footer__copyright">
+          © MyBudgets 2025, Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+    <!-- Fin de footer -->
+
+</body>
+</html>

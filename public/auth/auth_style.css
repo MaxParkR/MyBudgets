@@ -1,0 +1,253 @@
+/* Importación de fuente y reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Estilos del body: imagen de fondo y centrado del contenedor */
+body{
+    /* Imagen de fondo principal */
+    background-image: url('../assets/background/7066965_3529641.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+/* Pseudo-elemento para aplicar blur a la imagen de fondo */
+body::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background/7066965_3529641.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(6px); /* Efecto de desenfoque */
+    z-index: -1; /* Detrás del contenido */
+}
+
+/* Estilos del contenedor principal */
+.container{
+    background-color: #f8e9fc; /* Color de fondo semi-transparente */
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Sombra */
+    position: relative;
+    overflow: hidden; /* Oculta partes de los paneles que se mueven */
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+/* Estilos para párrafos, spans y enlaces dentro del contenedor */
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #260259;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;  
+}
+
+/* Estilos generales para botones dentro del contenedor */
+.container button{
+    background-color: #7313c8; /* Color principal del botón */
+    color: #f8e9fc;
+    font-size: 12px;
+    padding: 10px 45px;
+    transition: 0.5s;
+    background-size: 200% auto;          
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Estilo para botones ocultos (usados en el toggle) */
+.container button.hidden{
+    background-color: transparent;
+    border-color: #f8e9fc;  
+}
+
+/* Estilos para formularios dentro del contenedor */
+.container form{
+    background-color: #f8e9fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;    
+}
+
+/* Estilos para campos de entrada (input) */
+.container input{
+    background-color: #eed8ff; /* Color de fondo del input */
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+/* Contenedor de cada formulario (Sign In y Sign Up) */
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out; /* Transición para la animación */
+}
+
+/* Posición inicial del formulario Sign In */
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2; /* Visible por defecto */
+}
+
+/* Mover Sign In a la derecha cuando el contenedor está activo */
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+/* Posición inicial del formulario Sign Up */
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0; /* Oculto por defecto */
+    z-index: 1;
+}
+
+/* Mover Sign Up a la derecha y hacerlo visible cuando el contenedor está activo */
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s; /* Animación adicional */
+}
+
+/* Keyframes para la animación de aparición del Sign Up */
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;        
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Estilos para los iconos de redes sociales */
+.iconos-redes{
+    margin: 20px 0;
+}
+
+.iconos-redes a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+/* Contenedor de los paneles de superposición (toggle) */
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%; /* Empieza en la mitad derecha */
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 30px 0 0 30px; /* Bordes redondeados iniciales */
+    z-index: 1000; /* Por encima de los formularios */
+}
+
+/* Mover el toggle a la izquierda cuando el contenedor está activo */
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 30px 30px 0; /* Cambia bordes redondeados */
+}
+
+/* Panel interior del toggle (el que tiene el gradiente) */
+.toggle{
+    background-color: #af26d5;
+    height: 100%;
+    background: linear-gradient(to right, #7226FF, #f042ff); /* Gradiente */
+    color: #fff;
+    position: relative;
+    left: -100%; /* Ajuste para cubrir el contenedor padre */
+    height: 100%;
+    width: 200%; /* Doble de ancho para permitir deslizamiento */
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+/* Deslizar el panel interior cuando el contenedor está activo */
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+/* Paneles individuales de texto y botón (izquierdo y derecho) */
+.toggle-panel{
+    position: absolute;
+    width: 50%; /* Ocupan la mitad del contenedor .toggle */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+/* Posición inicial del panel izquierdo (fuera de la vista a la izquierda) */
+.toggle-izquierdo{
+    transform: translateX(-200%);
+}
+
+/* Mover panel izquierdo a la vista cuando el contenedor está activo */
+.container.active .toggle-izquierdo{
+    transform: translateX(0);
+}
+
+/* Posición inicial del panel derecho (en la vista) */
+.toggle-derecho{
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Mover panel derecho fuera de la vista a la derecha cuando el contenedor está activo */
+.container.active .toggle-derecho{
+    transform: translateX(200%);
+}
