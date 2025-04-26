@@ -26,6 +26,9 @@
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
 
+    <!-- Auth Check JS: Script para verificación de autenticación -->
+    <script src="/auth/auth_check.js"></script>
+
     <!-- Swiper JS: Enlace CDN para el script de Swiper -->
     <!-- 'defer' asegura que el script se descargue en paralelo y se ejecute después de que el HTML se haya analizado completamente, sin bloquear el renderizado. -->
     <script
@@ -46,6 +49,21 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <!-- Script para verificar autenticación al cargar la página -->
+    <script>
+        // Verificar si el usuario está autenticado, si no, redirigir a login
+        document.addEventListener('DOMContentLoaded', function() {
+            // Usando la función requireAuth del script auth_check.js
+            if (typeof window.auth !== 'undefined') {
+                window.auth.requireAuth();
+            } else {
+                // Fallback por si el script auth_check.js no se cargó correctamente
+                if (!localStorage.getItem('token')) {
+                    window.location.href = '/auth/login.html';
+                }
+            }
+        });
+    </script>
     <!-- ==================== HEADER ==================== -->
     <!-- Cabecera principal de la página -->
     <header class="header" id="header">

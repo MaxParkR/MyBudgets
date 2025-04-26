@@ -14,6 +14,20 @@
     
     <!-- Hoja de estilos CSS -->
     <link rel="stylesheet" href="auth_style.css">
+    
+    <!-- Script de verificación de autenticación -->
+    <script src="/auth/auth_check.js"></script>
+    <script>
+        // Si el usuario ya está autenticado, redirigir a la página principal
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.auth !== 'undefined') {
+                // Si el usuario ya está autenticado, lo redirigimos al dashboard
+                if (localStorage.getItem('token')) {
+                    window.location.href = '/index.html';
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Contenedor principal -->

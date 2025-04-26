@@ -21,6 +21,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/api/test', (req, res) => res.send('Ruta API de prueba funcionando')); // Ruta de prueba para API
 app.use('/api/auth', require('./routes/auth'));
 
+// Redireccionar a la página de login cuando se accede a la raíz
+app.get('/', (req, res) => {
+  res.redirect('/auth/login.html');
+});
+
 // Ruta fallback para servir index.html (o login.html si se prefiere) para rutas no API
 // Si tienes un SPA, esto es útil. Por ahora, servir estáticos es suficiente.
 /* app.get('*', (req, res) => {
