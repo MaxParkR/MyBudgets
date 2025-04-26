@@ -51,6 +51,17 @@ const clearError = (element) => {
     element.style.display = 'none';
 };
 
+// Determinar la URL base de la API según el entorno
+const getApiBaseUrl = () => {
+    // En producción (Vercel)
+    if (window.location.hostname !== 'localhost') {
+        // Usar la misma URL base que el frontend en Vercel
+        return window.location.origin;
+    }
+    // En desarrollo local
+    return 'http://localhost:5000';
+};
+
 // Listener para el formulario de Login
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -61,7 +72,8 @@ if (loginForm) {
         const password = document.getElementById('login-password').value;
 
         try {
-            const res = await fetch('/api/auth/login', { // Ruta del backend
+            const apiBaseUrl = getApiBaseUrl();
+            const res = await fetch(`${apiBaseUrl}/api/auth/login`, { // Ruta del backend con URL base dinámica
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -104,7 +116,8 @@ if (registerForm) {
         }
 
         try {
-            const res = await fetch('/api/auth/register', { // Ruta del backend
+            const apiBaseUrl = getApiBaseUrl();
+            const res = await fetch(`${apiBaseUrl}/api/auth/register`, { // Ruta del backend con URL base dinámica
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
