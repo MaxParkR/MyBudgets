@@ -86,6 +86,11 @@ h6 {
   min-width: 140px;
   transition: all 0.3s ease-in-out;
   font-size: 14px;
+  /* Añadido para centrar contenido verticalmente */
+  display: inline-flex;
+  align-items: center;
+  /* Asegurar centrado horizontal también */
+  justify-content: center;
 }
 .btn:hover {
   background-color: #7367f0;
@@ -263,7 +268,7 @@ h6 {
 }
 @media (min-width: 1200px) {
   .header .btn {
-    display: block;
+    display: inline-flex;
   }
 }
 .header.is-active {
@@ -277,10 +282,6 @@ h6 {
   width: 140px; /* o 100px según prefieras */
   height: auto;
   margin-right: 20px;
-}
-
-.logo_footer{
-  width: 300px;
 }
 
 .nav {
@@ -619,6 +620,10 @@ h6 {
 .footer {
   background: #FCFFFC;
   padding-top: 70px;
+}
+.logo_footer {
+  max-width: 150px; 
+  height: auto; 
 }
 .footer__container {
   display: flex;

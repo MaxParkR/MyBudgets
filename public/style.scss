@@ -129,6 +129,13 @@ h6{
     //animación suave para cambio de estilo
     transition: all 0.3s ease-in-out;
     font-size: 14px;
+    
+    /* Añadido para centrar contenido verticalmente */
+    display: inline-flex; 
+    align-items: center; 
+    /* Asegurar centrado horizontal también */
+    justify-content: center; 
+
     &:hover{
         background-color: $c-primary-hover;
     }
@@ -295,7 +302,7 @@ h6{
     .btn{
         display: none;
         @include breakpoint(desktop){
-            display: block;
+            display: inline-flex;
         }
     }
     &.is-active{

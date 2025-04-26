@@ -8,9 +8,10 @@ class Egreso extends Dato{
     /**
      * @param {string} descripcion Descripción del egreso.
      * @param {number} valor Valor del egreso.
+     * @param {string} month Mes del egreso.
      */
-    constructor(descripcion, valor){
-        super(descripcion, valor);
+    constructor(descripcion, valor, month){
+        super(descripcion, valor, month);
         this._id = ++Egreso.contadorEgresos;
     }
 

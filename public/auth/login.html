@@ -21,7 +21,7 @@
         
         <!-- Formulario de Registro (Sign Up) -->
         <div class="form-container sign-up">
-           <form>
+           <form id="register-form">
                 <h1>Crear Cuenta</h1>
                 <!-- Iconos para login con redes sociales -->
                 <div class="iconos-redes">
@@ -30,18 +30,20 @@
                     <a href="#" class="icono"><i class="ri-github-fill"></i></a>
                     <a href="#" class="icono"><i class="ri-linkedin-fill"></i></a>
                 </div>
-                <span>o registrate con una red social</span>
-                <!-- Campos de entrada -->
-                <input type="text" placeholder="Nombre">
-                <input type="email" placeholder="Correo">
-                <input type="password" placeholder="Contraseña">
-                <button>registrarme</button>
+                <span>o usa tu email para registrarte</span>
+                <!-- Campos de entrada con IDs -->
+                <input type="text" placeholder="Nombre" id="register-name">
+                <input type="email" placeholder="Correo" id="register-email" required>
+                <input type="password" placeholder="Contraseña" id="register-password" required>
+                <!-- Contenedor para mensajes de error de registro -->
+                <div id="register-error-message" class="error-message" style="color: red; margin-top: 10px; font-size: 12px; display: none;"></div>
+                <button type="submit">Registrarme</button>
            </form> 
         </div>
         
         <!-- Formulario de Inicio de Sesión (Sign In) -->
         <div class="form-container sign-in">
-            <form>
+            <form id="login-form">
                  <h1>Iniciar Sesión</h1>
                  <!-- Iconos para login con redes sociales -->
                  <div class="iconos-redes">
@@ -50,12 +52,14 @@
                      <a href="#" class="icono"><i class="ri-github-fill"></i></a>
                      <a href="#" class="icono"><i class="ri-linkedin-fill"></i></a>
                  </div>
-                 <!-- Campos de entrada -->
-                 <input type="email" placeholder="Correo">
-                 <input type="password" placeholder="Contraseña">
-                 <!-- Enlace para recuperar contraseña -->
+                 <span>o usa tu email y contraseña</span>
+                 <!-- Campos de entrada con IDs -->
+                 <input type="email" placeholder="Correo" id="login-email" required>
+                 <input type="password" placeholder="Contraseña" id="login-password" required>
+                 <!-- Contenedor para mensajes de error de login -->
+                 <div id="login-error-message" class="error-message" style="color: red; margin-top: 10px; font-size: 12px; display: none;"></div>
                  <a href="#">¿Olvidaste tu contraseña?</a>
-                 <button>Iniciar Sesión</button>
+                 <button type="submit">Iniciar Sesión</button>
             </form> 
          </div>
          

@@ -8,9 +8,10 @@ class Ingreso extends Dato{
     /**
      * @param {string} descripcion Descripción del ingreso.
      * @param {number} valor Valor del ingreso.
+     * @param {string} month Mes del ingreso.
      */
-    constructor(descripcion, valor){
-        super(descripcion, valor);
+    constructor(descripcion, valor, month){
+        super(descripcion, valor, month);
         this._id = ++Ingreso.contadorIngresos;
     }
 

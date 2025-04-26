@@ -1,0 +1,22 @@
+// Configuración de la conexión a la base de datos MongoDB 
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            // Opciones de Mongoose para evitar warnings de deprecación
+            // Ya no son necesarias en Mongoose 6+
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
+            // useCreateIndex: true, // Tampoco necesario
+            // useFindAndModify: false // Tampoco necesario
+        });
+        console.log('MongoDB Conectado...');
+    } catch (err) {
+        console.error('Error al conectar a MongoDB:', err.message);
+        // Salir del proceso con fallo si no se puede conectar
+        process.exit(1);
+    }
+};
+
+module.exports = connectDB; 

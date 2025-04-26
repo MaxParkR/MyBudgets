@@ -1,6 +1,7 @@
 /**
  * @file auth_script.js
- * Maneja la animación de cambio entre los formularios de inicio de sesión y registro.
+ * Maneja la animación de cambio entre los formularios de inicio de sesión y registro,
+ * y la comunicación con el backend para autenticación.
  */
 
 // Selecciona el contenedor principal.
@@ -29,4 +30,101 @@ registroBtn.addEventListener('click', () =>{
 loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
+
+// Seleccionar Formularios
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+
+// Seleccionar Contenedores de Mensajes de Error
+const loginErrorMsg = document.getElementById('login-error-message');
+const registerErrorMsg = document.getElementById('register-error-message');
+
+// Función para mostrar errores
+const displayError = (element, message) => {
+    element.textContent = message;
+    element.style.display = 'block'; 
+};
+
+// Función para ocultar errores
+const clearError = (element) => {
+    element.textContent = '';
+    element.style.display = 'none';
+};
+
+// Listener para el formulario de Login
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevenir envío por defecto
+        clearError(loginErrorMsg); // Limpiar errores previos
+
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        try {
+            const res = await fetch('/api/auth/login', { // Ruta del backend
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                // Si hay error, mostrar mensaje del backend o uno genérico
+                displayError(loginErrorMsg, data.msg || 'Error al iniciar sesión. Verifica tus credenciales.');
+            } else {
+                // Éxito: guardar token y redirigir
+                localStorage.setItem('token', data.token);
+                window.location.href = '../index.html'; // Redirigir al landing page
+            }
+
+        } catch (error) {
+            console.error('Error en fetch login:', error);
+            displayError(loginErrorMsg, 'Ocurrió un error inesperado. Inténtalo de nuevo.');
+        }
+    });
+}
+
+// Listener para el formulario de Registro
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearError(registerErrorMsg);
+
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        
+        // Validación simple (se podrían añadir más)
+        if (!email || !password) {
+            displayError(registerErrorMsg, 'Email y contraseña son requeridos.');
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/auth/register', { // Ruta del backend
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                displayError(registerErrorMsg, data.msg || 'Error al registrar. Inténtalo de nuevo.');
+            } else {
+                localStorage.setItem('token', data.token);
+                window.location.href = '../index.html'; //ingresa al landing page
+            }
+
+        } catch (error) {
+            console.error('Error en fetch register:', error);
+            displayError(registerErrorMsg, 'Ocurrió un error inesperado. Inténtalo de nuevo.');
+        }
+    });
+}
 

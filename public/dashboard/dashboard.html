@@ -1,132 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBudgets</title>
-    <link href="footer_style.css" rel="stylesheet"/>
+    <title>Dashboard - MyBudgets</title>
     <link href="dash_styles.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
 </head>
 <body onload='cargarApp()'>
-    <header class="header">
-        <a href="#" class = "logo">
-          <img src="../assets/logobg.png" alt="Logo MyBudgets">
+    <header class="header" id="header">
+      <div class="header__container container">
+        <a href="../index.html">
+          <img src="../assets/logobg.png" alt="Logo MyBudgets" class="logo"/>
         </a>
+        <div class="nav-trigger" id="navTrigger">
+          <i class="ri-menu-line" aria-hidden="true"></i>
+        </div>
+        <nav class="nav" id="nav">
+          <div class="nav__close-btn" id="navCloseBtn">
+            <i class="ri-close-large-line" aria-hidden="true"></i>
+          </div>
+          <ul class="nav__list">
+            <li class="nav__item"><a href="../index.html" class="nav__link">Inicio</a></li>
+            <li class="nav__item"><a href="../index.html#beneficios" class="nav__link">Nosotros</a></li>
+            <li class="nav__item"><a href="#" class="nav__link active">Dashboard</a></li>
+            <li class="nav__item"><a href="../index.html#contacto" class="nav__link">Contacto</a></li>
+            <li class="nav__item"><a href="../index.html#reseñas" class="nav__link">Reseñas</a></li>
+            <li class="nav__item"><a href="#" class="nav__link">Perfil</a></li>
+          </ul>
+          </nav>
+      </div>
     </header>
     <div class="cabecero">
-        <div class="presupuesto">
+        <div class="presupuesto container">
             <div class="presupuesto_titulo">
                 Presupuesto Mensual
             </div>
-            <div class="presupuesto_valor" id='presupuesto'>+ 2,000.00</div>
+            <div class="presupuesto_valor" id='presupuesto'>+ 0,00</div>
+            <div class="presupuesto_resumen_container">
             <div class="presupuesto_ingreso limpiarEstilos">
                 <div class="presupuesto_ingreso--texto">Ingresos</div>
                 <div class="derecha">
-                    <div class="presupuesto_ingreso--valor" id='ingresos'>+4,000.00</div>
-                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
-                </div>
+                        <div class="presupuesto_ingreso--valor" id='ingresos'>+ 0,00</div>
+                    </div>
             </div>
             <div class="presupuesto_egreso limpiarEstilos">
                 <div class="presupuesto_egreso--texto">Egresos</div>
                 <div class="derecha limpiarEstilos">
-                    <div class="presupuesto_egreso--valor" id = 'egresos'>- 1,900.00</div>
-                     <div class="presupuesto_egreso--porcentaje" id ='porcentaje'>45%</div>
+                        <span class="presupuesto_egreso--porcentaje" id='porcentaje'>0%</span>
+                        <span class="presupuesto_egreso--valor" id='egresos'>- 0,00</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <form id = 'forma' onsubmit="return false;">
-        <div class="agregar">
+    <form id='forma' class="container agregar-form" onsubmit="return false;">
             <div class="agregar_contenedor">
-                <select class = 'agregar_tipo' id = 'tipo'>
-                    <option value = 'ingreso' selected>+</option>
-                    <option value = 'egreso'>-</option>
+            <select class='agregar_tipo' id='tipo'>
+                <option value='ingreso' selected>+</option>
+                <option value='egreso'>-</option>
+            </select>
+            <input type='text' class='agregar_descripcion' placeholder="Descripción" id='descripcion' required/>
+            <input type='number' class='agregar_valor' placeholder="Valor" id='valor' step="any" required/>
+            <select class='agregar_mes' id='mes' required>
+                <option value="" disabled selected>Mes</option>
+                <option value="Ene">Enero</option>
+                <option value="Feb">Febrero</option>
+                <option value="Mar">Marzo</option>
+                <option value="Abr">Abril</option>
+                <option value="May">Mayo</option>
+                <option value="Jun">Junio</option>
+                <option value="Jul">Julio</option>
+                <option value="Ago">Agosto</option>
+                <option value="Sep">Septiembre</option>
+                <option value="Oct">Octubre</option>
+                <option value="Nov">Noviembre</option>
+                <option value="Dic">Diciembre</option>
                 </select>
-                <input type = 'text' class = 'agregar_descripcion'
-                placeholder="Agregar Descripción" id = 'descripcion'/>
-                <input type = 'number' class = 'agregar_valor' 
-                placeholder="Valor" id = 'valor' step="any"/>
-                <button class = 'agregar_btn' onclick="agregarDato()">
+            <button class='agregar_btn' onclick="agregarDato()">
                     <ion-icon name="checkmark-circle-outline"></ion-icon>
                 </button> 
-            </div>
         </div>
     </form>
-    <div class="contenedor limpiarEstilos">
-        <div class="ingreso">
-            <h2 class="ingreso_titulo">Ingresos</h2>
-            <div id="lista-ingresos">
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Salario</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">+ 2,200.00</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
+    <main class="dashboard-content container">
+        <div class="column column-left">
+            <div class="card">
+                <h2 class="card-title">INGRESOS</h2>
+                <div id="lista-ingresos" class="list-container">
+                    <!-- Contenido generado por JS -->
                 </div>
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Venta Coche</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">+ 1,500.00</div>
-                        <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
                         </div>
-                    </div>
+            <div class="card">
+                <h2 class="card-title egreso-title">EGRESOS</h2>
+                 <div id="lista-egresos" class="list-container">
+                     <!-- Contenido generado por JS -->
                 </div>
             </div>
         </div>
-        <div class="egreso">
-            <h2 class="egreso_titulo">Egresos</h2>
-            <div id="lista-egresos">
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Arriendo apartamento</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">- 900.00</div>
-                        <div class="elemento_porcentaje">21%</div>
-                        <div class="elemento_eliminar">
-                            <button class = "elemento_eliminar--btn">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
+        <div class="column column-center">
+            <div class="card">
+                <h2 class="card-title">INGRESOS POR MES</h2>
+                <div class="chart-container">
+                    <canvas id="incomeMonthChart"></canvas>
                         </div>
                     </div>
+            <div class="card">
+                <h2 class="card-title">GRÁFICA INGRESOS Y EGRESOS</h2>
+                <div class="chart-container">
+                    <canvas id="incomeExpenseChart"></canvas>
                 </div>
-                <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Ropa</div>
-                    <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">- 400.00</div>
-                        <div class="elemento_porcentaje">10%</div>
-                        <div class="elemento_eliminar">
-                            <button class = "elemento_eliminar--btn">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
                         </div>
                     </div>
+        <div class="column column-right">
+            <div class="card">
+                <h2 class="card-title">CATEGORIAS GASTOS - EGRESOS</h2>
+                <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
                 </div>
             </div>
         </div>
-    </div>
-
+    </main>
+    <footer class="footer">
+      <!-- Contenedor principal del footer -->
+      <div class="container footer__container">
+        <!-- Logo en el footer -->
+        <img src="../assets/logobg.png" alt="Logo MyBudgets" class="logo_footer"/> <!-- Ajustar clase y ruta si es necesario -->
+        <!-- Contenedor para la información de contacto y redes sociales -->
+        <div class="footer__info-wrapper">
+          <!-- Información de contacto -->
+          <div class="info">
+            <p class="info__email">soporte@mybudgets.com</p>
+            <p class="info__address">Calle 57 #3-00<br>
+            018000180779
+          </p>
+        </div>
+          <!-- Lista de redes sociales -->
+          <ul class="social">
+            <li class="social__item">
+              <a href="#" class="social__icon" aria-label="Instagram">
+                <i class="ri-instagram-fill" aria-hidden="true"></i>
+              </a>
+              </li>
+            <li class="social__item">
+              <a href="#" class="social__icon" aria-label="Twitter/X">
+                <i class="ri-twitter-x-line" aria-hidden="true"></i>
+              </a>
+              </li>
+            <li class="social__item">
+              <a href="#" class="social__icon" aria-label="Facebook">
+                <i class="ri-facebook-circle-fill" aria-hidden="true"></i>
+              </a>
+          </li>
+        </ul>
+        </div>
+      </div>
+      <!-- Contenedor para el aviso de copyright -->
+      <div class="container">
+        <p class="footer__copyright">
+          © MyBudgets 2025, Todos los derechos reservados.
+        </p>
+        </div>
+      </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Dato.js"></script>
     <script src="Ingreso.js"></script>
     <script src="Egreso.js"></script>
     <script src="appDash.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script>
-  window.addEventListener("scroll", function() {
-    let header = document.querySelector(".header");
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
-</script>
 </body>
 </html>
