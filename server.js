@@ -10,9 +10,27 @@ connectDB();
 
 const app = express();
 
+// Configuración de CORS más detallada para produccion
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [/\.vercel\.app$/, /vercel\.app$/] // Dominios permitidos en producción
+    : 'http://localhost:5000', // En desarrollo
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // Middleware
-app.use(cors()); // Habilitar CORS para todas las rutas
+app.use(cors(corsOptions)); // CORS con opciones específicas
 app.use(express.json()); // Para parsear JSON
+
+// Middleware para manejar errores de JSON mal formado
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ msg: 'JSON mal formado' });
+  }
+  next();
+});
 
 // Servir archivos estáticos de la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));

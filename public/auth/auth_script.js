@@ -94,7 +94,13 @@ if (loginForm) {
 
         } catch (error) {
             console.error('Error en fetch login:', error);
-            displayError(loginErrorMsg, 'Ocurrió un error inesperado. Inténtalo de nuevo.');
+            console.log('URL utilizada:', `${getApiBaseUrl()}/api/auth/login`);
+            console.log('Detalles del error:', {
+                mensaje: error.message,
+                stack: error.stack,
+                tipo: error.name
+            });
+            displayError(loginErrorMsg, `Error: ${error.message}. Revisa la consola para más detalles.`);
         }
     });
 }
@@ -136,7 +142,13 @@ if (registerForm) {
 
         } catch (error) {
             console.error('Error en fetch register:', error);
-            displayError(registerErrorMsg, 'Ocurrió un error inesperado. Inténtalo de nuevo.');
+            console.log('URL utilizada:', `${getApiBaseUrl()}/api/auth/register`);
+            console.log('Detalles del error:', {
+                mensaje: error.message,
+                stack: error.stack,
+                tipo: error.name
+            });
+            displayError(registerErrorMsg, `Error: ${error.message}. Revisa la consola para más detalles.`);
         }
     });
 }
