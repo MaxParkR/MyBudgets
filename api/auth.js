@@ -1,4 +1,4 @@
-// Archivo de función serverless para autenticación en Vercel
+// función serverless para autenticación en Vercel
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -88,7 +88,7 @@ app.post('/api/auth/register', async (req, res) => {
     user = new User({
       name,
       email,
-      password // Se hasheará en el modelo mediante el hook pre-save
+      password 
     });
 
     // Guardar usuario
